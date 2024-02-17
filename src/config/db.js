@@ -7,7 +7,6 @@ const dbConnect = async () => {
   try {
     await mongoose.connect(PORT, {
       useNewUrlParser: true,
-      useCreateIndex: true,
       useUnifiedTopology: true
     });
     console.log("Database Connected at", PORT);
