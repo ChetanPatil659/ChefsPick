@@ -2,14 +2,16 @@ import express from "express";
 import dbConnect from "./src/config/db.js";
 import baseRouter from "./src/routes/index.js";
 import cors from "cors";
+import 'dotenv/config'
 
 const app = express()
+
 
 app.use(express.json())
 app.use(cors())
 
 app.listen('8000', ()=>{
-    console.log('server started at 8000')
+  console.log('server started at 8000')
 })
 
 dbConnect()
