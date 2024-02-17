@@ -3,9 +3,10 @@ import mongoose from "mongoose";
 mongoose.set("strictQuery", false);
 
 const dbConnect = async () => {
+  const PORT = "mongodb+srv://patilchetan659:FyJLnMF7HbsVnkoE@cluster0.o2qe1zg.mongodb.net/?retryWrites=true&w=majority"
   try {
-    await mongoose.connect("mongodb://localhost:27017/recipe_app");
-    console.log("Database Connected at", "mongodb://localhost:27017/recipe_app");
+    await mongoose.connect(PORT);
+    console.log("Database Connected at", PORT);
   } catch (err) {
     console.error(err.message);
     process.exit(1);
