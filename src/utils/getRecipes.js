@@ -4,10 +4,7 @@ import Recipe from "../models/RecipeModel.js"
 export const getRecipesByIdUtil = async (id) => {
     const recipeFromSpoonacular = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=b838def71b9543eea1c63d3d5fe3218a`)
     const response = recipeFromSpoonacular.data
-
-    const temp = await Recipe.findOne({ id: id })
     
-    if (!temp) {
         const recipe = Recipe.create({
             vegetarian: response.vegetarian,
             vegan: response.vegan,
@@ -28,7 +25,6 @@ export const getRecipesByIdUtil = async (id) => {
             ],
             spoonacularScore: response.spoonacularScore
         })
-    }
 
     return response
 }

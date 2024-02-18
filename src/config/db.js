@@ -1,26 +1,20 @@
 import { MongoClient, ServerApiVersion } from 'mongodb'
 import 'dotenv/config'
+import mongoose from 'mongoose'
 
 const uri = process.env.MONGO_URL
+console.log(uri)
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
+// const client = new MongoClient('mongodb://localhost:27017/recipe_app');
 
 export default async function dbConnect() {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+    await mongoose.connect(uri);
+    console.log("Database Connected at", uri);
+  } catch (err) {
+    console.error(err.message);
+    process.exit(1);
   }
+
 }
